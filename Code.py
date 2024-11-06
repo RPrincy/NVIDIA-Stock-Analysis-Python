@@ -2,17 +2,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-<<<<<<< Updated upstream
-=======
 from sklearn.linear_model import LinearRegression
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import adfuller
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error
->>>>>>> Stashed changes
-
-
 #importing the dataset
-data = pd.read_csv("c:/Users/bharg/Downloads/MSITM_Python/Professor_Git_Hub/NVIDIA-Stock-Analysis-Python/nvidia_stock_data.csv")
+data = pd.read_csv("D:/Python/nvidia_stock_data.csv")
 
 #converting the dataset into a dataframe
 df = pd.DataFrame(data)
@@ -33,9 +28,7 @@ sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".5f")
 plt.title("Correlation Matrix")
 plt.savefig('correlation_matrix.jpg')
 plt.show()
-<<<<<<< Updated upstream
 df_2 = df_1.drop(columns='Adj Close') #2. preprocessing step (Removing Adj Close to avoid multicollinearity)
-=======
 #building a Linear Regression model (#1.machine learning model) to predict the close values with a train data of 80% and a test data of 20%
 X = df_2[['Open', 'High', 'Low', 'Volume']] #independent variables
 y = df_2['Close']#dependent variables
@@ -108,4 +101,4 @@ plt.ylabel('Close Price')
 plt.legend()
 plt.savefig('Regression_vs_ARIMA.jpg')
 plt.show()
->>>>>>> Stashed changes
+plt.show()

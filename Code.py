@@ -52,3 +52,25 @@ mape_linear = mean_absolute_percentage_error(y_test, y_linear_predictions)
 print(f"Mean Squared Error of the linear Regression model: {mse_linear:.4f}%")
 print(f"R-squared of the linear Regression model: {r2_linear:.4f}%")
 print(f"Mean Absolute Percentage Error of the linear Regression model: {mape_linear * 100:.2f}%")
+
+#forecasting close value using ARIMA model(#2. machine Learning model)
+close_series = y_train
+adf_result = adfuller(close_series)
+ 
+#fitting the ARIMA model
+model = ARIMA(close_series, order=(1, 1, 1))
+arima_result = model.fit()
+ 
+#Summarizing the model
+print(arima_result.summary())
+#foreacsting the next 87 observations
+forecast = arima_result.forecast(steps=87)
+forecast_1 = arima_result.get_forecast(steps=87)
+forecast_mean = forecast_1.predicted_mean
+confidence_intervals = forecast_1.conf_int()
+ 
+#testing accuracy
+mse_arima = mean_squared_error(y_test, forecast)
+mape_arima = mean_absolute_percentage_error(y_test, forecast)
+print(f"Mean Squared Error of the ARIMA model: {mse_arima:.4f}")
+print(f"Mean Absolute Percentage Error of ARIMA model: {mape_arima * 100:.2f}%")

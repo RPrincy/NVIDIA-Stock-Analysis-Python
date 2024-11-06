@@ -3,9 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.stattools import adfuller
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error
-
-
 #importing the dataset
 data = pd.read_csv("D:/Python/nvidia_stock_data.csv")
 
@@ -29,7 +29,6 @@ plt.title("Correlation Matrix")
 plt.savefig('correlation_matrix.jpg')
 plt.show()
 df_2 = df_1.drop(columns='Adj Close') #2. preprocessing step (Removing Adj Close to avoid multicollinearity)
-
 #building a Linear Regression model (#1.machine learning model) to predict the close values with a train data of 80% and a test data of 20%
 X = df_2[['Open', 'High', 'Low', 'Volume']] #independent variables
 y = df_2['Close']#dependent variables
@@ -86,6 +85,7 @@ plt.title("ARIMA Model Forecast for Close Values")
 plt.xlabel("Date")
 plt.ylabel("Close Price")
 plt.legend()
+plt.savefig('ARIMA_Forecast.jpg')
 plt.show()
  
 #Comparing the results from ARIMA and Linear Regression
@@ -99,4 +99,6 @@ plt.title('Comparison of Regression and ARIMA Forecasts with Actual Data')
 plt.xlabel('Date')
 plt.ylabel('Close Price')
 plt.legend()
+plt.savefig('Regression_vs_ARIMA.jpg')
+plt.show()
 plt.show()

@@ -36,8 +36,6 @@ plt.show()
 <<<<<<< Updated upstream
 df_2 = df_1.drop(columns='Adj Close') #2. preprocessing step (Removing Adj Close to avoid multicollinearity)
 =======
-df_2 = df_1.drop(columns='Adj Close') #2. preprocessing step (Removing Adj Close to avoid multicollinearity)
-
 #building a Linear Regression model (#1.machine learning model) to predict the close values with a train data of 80% and a test data of 20%
 X = df_2[['Open', 'High', 'Low', 'Volume']] #independent variables
 y = df_2['Close']#dependent variables

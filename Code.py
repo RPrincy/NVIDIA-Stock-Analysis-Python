@@ -74,3 +74,29 @@ mse_arima = mean_squared_error(y_test, forecast)
 mape_arima = mean_absolute_percentage_error(y_test, forecast)
 print(f"Mean Squared Error of the ARIMA model: {mse_arima:.4f}")
 print(f"Mean Absolute Percentage Error of ARIMA model: {mape_arima * 100:.2f}%")
+
+# Plot the forecast along with historical data
+plt.figure(figsize=(12, 6))
+plt.plot(close_series, label='Historical Close')
+plt.plot(forecast_mean, label='Forecast', color='orange')
+plt.fill_between(confidence_intervals.index,
+                 confidence_intervals.iloc[:, 0],
+                 confidence_intervals.iloc[:, 1], color='pink', alpha=0.3)
+plt.title("ARIMA Model Forecast for Close Values")
+plt.xlabel("Date")
+plt.ylabel("Close Price")
+plt.legend()
+plt.show()
+ 
+#Comparing the results from ARIMA and Linear Regression
+plt.plot(y_train, label='Train Data', color='blue')
+plt.plot(y_test,label='Actual Data', color='green', linestyle='--', linewidth=2)
+plt.plot(y_test.index,y_linear_predictions, label='Regression Forecast', color='orange', linestyle='dotted')
+plt.plot(forecast_mean, label='ARIMA Forecast', color='red', linestyle='dotted')
+ 
+#Add labels and legend to the plot
+plt.title('Comparison of Regression and ARIMA Forecasts with Actual Data')
+plt.xlabel('Date')
+plt.ylabel('Close Price')
+plt.legend()
+plt.show()
